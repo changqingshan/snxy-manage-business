@@ -1,6 +1,10 @@
 package com.snxy.manage.business.dao.mapper;
 
-import com.snxy.business.domain.OutFeeDetail;
+
+
+
+import com.snxy.manage.business.domain.OutFeeDetail;
+
 
 public interface OutFeeDetailMapper {
     int deleteByPrimaryKey(Long id);

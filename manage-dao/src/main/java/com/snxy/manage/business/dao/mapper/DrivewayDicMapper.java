@@ -1,6 +1,8 @@
 package com.snxy.manage.business.dao.mapper;
 
-import com.snxy.business.domain.DrivewayDic;
+
+import com.snxy.manage.business.domain.DrivewayDic;
+
 
 public interface DrivewayDicMapper {
     int deleteByPrimaryKey(Long id);

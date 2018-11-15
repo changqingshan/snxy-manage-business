@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snxy.business.dao.mapper.DeliveryOrderBakMapper">
-  <resultMap id="BaseResultMap" type="com.snxy.business.domain.DeliveryOrderBak">
+
+<mapper namespace="com.snxy.manage.business.dao.mapper.DeliveryOrderBakMapper">
+  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.DeliveryOrderBak">
+
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="delivery_order_id" jdbcType="BIGINT" property="deliveryOrderId" />
     <result column="driver_plate_number" jdbcType="VARCHAR" property="driverPlateNumber" />
@@ -27,7 +29,9 @@
     delete from delivery_order_bak
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.snxy.business.domain.DeliveryOrderBak">
+
+  <insert id="insert" parameterType="com.snxy.manage.business.domain.DeliveryOrderBak">
+
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -40,7 +44,9 @@
       #{status,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.snxy.business.domain.DeliveryOrderBak">
+
+  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.DeliveryOrderBak">
+
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -104,7 +110,9 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.business.domain.DeliveryOrderBak">
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.DeliveryOrderBak">
+
     update delivery_order_bak
     <set>
       <if test="deliveryOrderId != null">
@@ -137,7 +145,9 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snxy.business.domain.DeliveryOrderBak">
+
+  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.DeliveryOrderBak">
+
     update delivery_order_bak
     set delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
       driver_plate_number = #{driverPlateNumber,jdbcType=VARCHAR},

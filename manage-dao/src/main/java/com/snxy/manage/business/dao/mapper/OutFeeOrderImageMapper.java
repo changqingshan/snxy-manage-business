@@ -1,6 +1,7 @@
 package com.snxy.manage.business.dao.mapper;
 
 
+
 import com.snxy.manage.business.domain.OutFeeOrderImage;
 
 public interface OutFeeOrderImageMapper {
