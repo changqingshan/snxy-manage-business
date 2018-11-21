@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snxy.manage.business.dao.mapper.QualitySheetMapper">
+  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.QualitySheet">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="delivery_order_id" jdbcType="BIGINT" property="deliveryOrderId" />
+    <result column="weight" jdbcType="REAL" property="weight" />
+    <result column="vegetable_category_id" jdbcType="BIGINT" property="vegetableCategoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="vehicle_plate_number" jdbcType="VARCHAR" property="vehiclePlateNumber" />
+    <result column="production_location" jdbcType="VARCHAR" property="productionLocation" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="qrcode_url" jdbcType="VARCHAR" property="qrcodeUrl" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="qualified" jdbcType="INTEGER" property="qualified" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="check_fee" jdbcType="DECIMAL" property="checkFee" />
+    <result column="is_pay" jdbcType="INTEGER" property="isPay" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, delivery_order_id, weight, vegetable_category_id, category_name, vehicle_plate_number, 
+    production_location, check_time, qrcode_url, status, qualified, remark, gmt_create, 
+    gmt_modified, is_delete,check_fee,is_pay
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from quality_sheet
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from quality_sheet
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.snxy.manage.business.domain.QualitySheet">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into quality_sheet (code, delivery_order_id, weight, 
+      vegetable_category_id, category_name, vehicle_plate_number, 
+      production_location, check_time, qrcode_url, 
+      status, qualified, remark, 
+      gmt_create, gmt_modified, is_delete
+      )
+    values (#{code,jdbcType=VARCHAR}, #{deliveryOrderId,jdbcType=BIGINT}, #{weight,jdbcType=REAL}, 
+      #{vegetableCategoryId,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{vehiclePlateNumber,jdbcType=VARCHAR}, 
+      #{productionLocation,jdbcType=VARCHAR}, #{checkTime,jdbcType=TIMESTAMP}, #{qrcodeUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{qualified,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.QualitySheet">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into quality_sheet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="deliveryOrderId != null">
+        delivery_order_id,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="vegetableCategoryId != null">
+        vegetable_category_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="vehiclePlateNumber != null">
+        vehicle_plate_number,
+      </if>
+      <if test="productionLocation != null">
+        production_location,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="qrcodeUrl != null">
+        qrcode_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="qualified != null">
+        qualified,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryOrderId != null">
+        #{deliveryOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=REAL},
+      </if>
+      <if test="vegetableCategoryId != null">
+        #{vegetableCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclePlateNumber != null">
+        #{vehiclePlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productionLocation != null">
+        #{productionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrcodeUrl != null">
+        #{qrcodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="qualified != null">
+        #{qualified,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.QualitySheet">
+    update quality_sheet
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryOrderId != null">
+        delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=REAL},
+      </if>
+      <if test="vegetableCategoryId != null">
+        vegetable_category_id = #{vegetableCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclePlateNumber != null">
+        vehicle_plate_number = #{vehiclePlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="productionLocation != null">
+        production_location = #{productionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrcodeUrl != null">
+        qrcode_url = #{qrcodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="qualified != null">
+        qualified = #{qualified,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snxy.business.domain.QualitySheet">
+    update quality_sheet
+    set code = #{code,jdbcType=VARCHAR},
+      delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
+      weight = #{weight,jdbcType=REAL},
+      vegetable_category_id = #{vegetableCategoryId,jdbcType=BIGINT},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      vehicle_plate_number = #{vehiclePlateNumber,jdbcType=VARCHAR},
+      production_location = #{productionLocation,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      qrcode_url = #{qrcodeUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      qualified = #{qualified,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <sql id="selectBaseResult">
+    a.id as id, a.code as code, a.delivery_order_id as delivery_order_id , a.weight as weight, a.vegetable_category_id as vegetable_category_id, a.category_name as category_name, a.vehicle_plate_number as vehicle_plate_number,
+    a.production_location as production_location, a.check_time as check_time , a.qrcode_url as qrcode_url, a.status as status, a.qualified as qualified, a.remark as remark ,
+  case
+  when a.gmt_modified!="" or a.gmt_modified!=null then a.gmt_modified
+  else a.gmt_create
+ end as gmt_create,
+    a.gmt_modified as gmt_modified , a.is_delete as is_delete
+    </sql>
+<select id="selectQualitySheetList" resultMap="BaseResultMap">
+    select
+   <include refid="selectBaseResult"/>
+   from delivery_order b,quality_sheet a
+     where b.id =a.delivery_order_id
+       and( b.receiver_online_user_id=#{useId}
+       or b.driver_online_user_id=#{useId}
+       or b.creator_id=#{useId})
+      and a.is_delete=0
+    <if test="searchName != null and searchName !=''">
+        and( a.category_name like  concat("%",#{searchName},"%")
+        or b.order_no like concat("%",#{searchName},"%")
+        )
+    </if>
+    order by gmt_create desc
+</select>
+  <select id="selectAllQualitySheetList" resultMap="BaseResultMap">
+      select
+  <include refid="selectBaseResult"/>
+  from quality_sheet a  left join  delivery_order b on  a.delivery_order_id=b.id
+      where
+      (a.user_id=#{useId}
+      or
+
+  ( b.receiver_online_user_id=#{useId}
+  or b.driver_online_user_id=#{useId}
+  or b.creator_id=#{useId}
+
+  ))
+  <if test="searchName != null and searchName !=''">
+    and( a.category_name like  concat("%",#{searchName},"%")
+    or a.code like concat("%",#{searchName},"%")
+    )
+    and a.is_delete=0
+     order by gmt_create desc
+  </if>
+</select>
+
+  <select id="selectAllQualitySheetListPart" resultMap="BaseResultMap">
+    select
+    <include refid="selectBaseResult"/>
+    from quality_sheet a
+    where a.user_id=#{useId}
+    <if test="searchName != null and searchName !=''">
+      and( a.category_name like  concat("%",#{searchName},"%")
+      or a.code like concat("%",#{searchName},"%")
+      )
+
+    </if>
+      and a.is_delete=0
+  </select>
+  <update id="deleteQualitySheetById">
+     update quality_sheet
+      set is_delete =1
+     where id=#{qualitySheetId}
+           and user_id!=null
+  </update>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from quality_sheet
+    where delivery_order_id = #{deliveryOrderId}
+  </select>
+
+  <select id="selectByCompanyId" resultMap="BaseResultMap">
+    select
+    qs.id, qs.code, qs.delivery_order_id, qs.weight, qs.vegetable_category_id, qs.category_name, qs.vehicle_plate_number,
+    qs.production_location, qs.check_time, qs.qrcode_url, qs.status, qs.qualified, qs.remark,
+    qs.gmt_modified, qs.is_delete,
+    case
+    when qs.gmt_modified != "" or qs.gmt_modified != null then qs.gmt_modified
+    else qs.gmt_create
+    end as gmt_create
+    from quality_sheet qs,delivery_order deo
+    where deo.receiver_company_id = #{companyId}
+    and deo.id = qs.delivery_order_id
+    order by qs.gmt_create DESC
+  </select>
+  <update id="updateIsPayByOrderId">
+    update quality_sheet
+    set is_pay=#{status},
+    gmt_modified=#{date}
+    where delivery_order_id=#{orderId}
+  </update>
+</mapper>

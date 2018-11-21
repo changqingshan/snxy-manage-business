@@ -161,4 +161,10 @@
       is_delete = #{isDelete,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="updateStatusByOrderId">
+    update out_fee_order
+     set status=#{status},
+     gmt_modified=#{date}
+     where out_fee_no=#{orderId}<!--待优化-->
+  </update>
 </mapper>

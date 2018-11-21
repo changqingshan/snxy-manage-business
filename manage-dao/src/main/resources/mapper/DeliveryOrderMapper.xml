@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snxy.manage.business.dao.mapper.DeliveryOrderMapper">
+  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.DeliveryOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
+    <result column="sender_mobile" jdbcType="VARCHAR" property="senderMobile" />
+    <result column="receiver_online_user_id" jdbcType="BIGINT" property="receiverOnlineUserId" />
+    <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_company" jdbcType="VARCHAR" property="receiverCompany" />
+    <result column="driver_online_user_id" jdbcType="BIGINT" property="driverOnlineUserId" />
+    <result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+    <result column="driver_mobile" jdbcType="VARCHAR" property="driverMobile" />
+    <result column="vehicle_id" jdbcType="BIGINT" property="vehicleId" />
+    <result column="driver_plate_number" jdbcType="VARCHAR" property="driverPlateNumber" />
+    <result column="driver_leave_time" jdbcType="TIMESTAMP" property="driverLeaveTime" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="start_addr" jdbcType="VARCHAR" property="startAddr" />
+    <result column="end_addr" jdbcType="VARCHAR" property="endAddr" />
+    <result column="distance" jdbcType="REAL" property="distance" />
+    <result column="est_arrival_time" jdbcType="TIMESTAMP" property="estArrivalTime" />
+    <result column="actual_arrival_time" jdbcType="TIMESTAMP" property="actualArrivalTime" />
+    <result column="load_status" jdbcType="INTEGER" property="loadStatus" />
+    <result column="location_certificate" jdbcType="INTEGER" property="locationCertificate" />
+    <result column="quality_certificate" jdbcType="INTEGER" property="qualityCertificate" />
+    <result column="qrcode_url" jdbcType="VARCHAR" property="qrcodeUrl" />
+    <result column="is_auth_pay" jdbcType="INTEGER" property="isAuthPay" />
+    <result column="info_integrity" jdbcType="INTEGER" property="infoIntegrity" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="receiver_company_id" jdbcType="BIGINT" property="receiverCompanyId" />
+    <result column="create_role_type" jdbcType="INTEGER" property="createRoleType" />
+      <result column="operate_id" jdbcType="INTEGER" property="operateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, creator_id, creator, sender_name, sender_mobile, receiver_online_user_id, 
+    receiver_mobile, receiver_name, receiver_company, driver_online_user_id, driver_name, 
+    driver_mobile, vehicle_id, driver_plate_number, driver_leave_time, send_time, start_addr, 
+    end_addr, distance, est_arrival_time, actual_arrival_time, load_status, location_certificate, 
+    quality_certificate, qrcode_url, is_auth_pay, info_integrity, status, case
+  when gmt_modified!="" or gmt_modified!=null then gmt_modified
+  else gmt_create
+ end as gmt_create,
+    gmt_modified, is_delete, receiver_company_id, create_role_type,operate_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from delivery_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from delivery_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.snxy.manage.business.domain.DeliveryOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into delivery_order (order_no, creator_id, creator, 
+      sender_name, sender_mobile, receiver_online_user_id, 
+      receiver_mobile, receiver_name, receiver_company, 
+      driver_online_user_id, driver_name, driver_mobile, 
+      vehicle_id, driver_plate_number, driver_leave_time, 
+      send_time, start_addr, end_addr, 
+      distance, est_arrival_time, actual_arrival_time, 
+      load_status, location_certificate, quality_certificate, 
+      qrcode_url, is_auth_pay, info_integrity, 
+      status, gmt_create, gmt_modified, 
+      is_delete, receiver_company_id, create_role_type
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, 
+      #{senderName,jdbcType=VARCHAR}, #{senderMobile,jdbcType=VARCHAR}, #{receiverOnlineUserId,jdbcType=BIGINT}, 
+      #{receiverMobile,jdbcType=VARCHAR}, #{receiverName,jdbcType=VARCHAR}, #{receiverCompany,jdbcType=VARCHAR}, 
+      #{driverOnlineUserId,jdbcType=BIGINT}, #{driverName,jdbcType=VARCHAR}, #{driverMobile,jdbcType=VARCHAR}, 
+      #{vehicleId,jdbcType=BIGINT}, #{driverPlateNumber,jdbcType=VARCHAR}, #{driverLeaveTime,jdbcType=TIMESTAMP}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{startAddr,jdbcType=VARCHAR}, #{endAddr,jdbcType=VARCHAR}, 
+      #{distance,jdbcType=REAL}, #{estArrivalTime,jdbcType=TIMESTAMP}, #{actualArrivalTime,jdbcType=TIMESTAMP}, 
+      #{loadStatus,jdbcType=INTEGER}, #{locationCertificate,jdbcType=INTEGER}, #{qualityCertificate,jdbcType=INTEGER}, 
+      #{qrcodeUrl,jdbcType=VARCHAR}, #{isAuthPay,jdbcType=INTEGER}, #{infoIntegrity,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT}, #{receiverCompanyId,jdbcType=BIGINT}, #{createRoleType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.DeliveryOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into delivery_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="senderName != null">
+        sender_name,
+      </if>
+      <if test="senderMobile != null">
+        sender_mobile,
+      </if>
+      <if test="receiverOnlineUserId != null">
+        receiver_online_user_id,
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile,
+      </if>
+      <if test="receiverName != null">
+        receiver_name,
+      </if>
+      <if test="receiverCompany != null">
+        receiver_company,
+      </if>
+      <if test="driverOnlineUserId != null">
+        driver_online_user_id,
+      </if>
+      <if test="driverName != null">
+        driver_name,
+      </if>
+      <if test="driverMobile != null">
+        driver_mobile,
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id,
+      </if>
+      <if test="driverPlateNumber != null">
+        driver_plate_number,
+      </if>
+      <if test="driverLeaveTime != null">
+        driver_leave_time,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="startAddr != null">
+        start_addr,
+      </if>
+      <if test="endAddr != null">
+        end_addr,
+      </if>
+      <if test="distance != null">
+        distance,
+      </if>
+      <if test="estArrivalTime != null">
+        est_arrival_time,
+      </if>
+      <if test="actualArrivalTime != null">
+        actual_arrival_time,
+      </if>
+      <if test="loadStatus != null">
+        load_status,
+      </if>
+      <if test="locationCertificate != null">
+        location_certificate,
+      </if>
+      <if test="qualityCertificate != null">
+        quality_certificate,
+      </if>
+      <if test="qrcodeUrl != null">
+        qrcode_url,
+      </if>
+      <if test="isAuthPay != null">
+        is_auth_pay,
+      </if>
+      <if test="infoIntegrity != null">
+        info_integrity,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="receiverCompanyId != null">
+        receiver_company_id,
+      </if>
+      <if test="createRoleType != null">
+        create_role_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderMobile != null">
+        #{senderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverOnlineUserId != null">
+        #{receiverOnlineUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiverMobile != null">
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null">
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCompany != null">
+        #{receiverCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="driverOnlineUserId != null">
+        #{driverOnlineUserId,jdbcType=BIGINT},
+      </if>
+      <if test="driverName != null">
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null">
+        #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null">
+        #{vehicleId,jdbcType=BIGINT},
+      </if>
+      <if test="driverPlateNumber != null">
+        #{driverPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverLeaveTime != null">
+        #{driverLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startAddr != null">
+        #{startAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="endAddr != null">
+        #{endAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null">
+        #{distance,jdbcType=REAL},
+      </if>
+      <if test="estArrivalTime != null">
+        #{estArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArrivalTime != null">
+        #{actualArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loadStatus != null">
+        #{loadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="locationCertificate != null">
+        #{locationCertificate,jdbcType=INTEGER},
+      </if>
+      <if test="qualityCertificate != null">
+        #{qualityCertificate,jdbcType=INTEGER},
+      </if>
+      <if test="qrcodeUrl != null">
+        #{qrcodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuthPay != null">
+        #{isAuthPay,jdbcType=INTEGER},
+      </if>
+      <if test="infoIntegrity != null">
+        #{infoIntegrity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="receiverCompanyId != null">
+        #{receiverCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="createRoleType != null">
+        #{createRoleType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.DeliveryOrder">
+    update delivery_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="senderName != null">
+        sender_name = #{senderName,jdbcType=VARCHAR},
+      </if>
+      <if test="senderMobile != null">
+        sender_mobile = #{senderMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverOnlineUserId != null">
+        receiver_online_user_id = #{receiverOnlineUserId,jdbcType=BIGINT},
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCompany != null">
+        receiver_company = #{receiverCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="driverOnlineUserId != null">
+        driver_online_user_id = #{driverOnlineUserId,jdbcType=BIGINT},
+      </if>
+      <if test="driverName != null">
+        driver_name = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverMobile != null">
+        driver_mobile = #{driverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null">
+        vehicle_id = #{vehicleId,jdbcType=BIGINT},
+      </if>
+      <if test="driverPlateNumber != null">
+        driver_plate_number = #{driverPlateNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="driverLeaveTime != null">
+        driver_leave_time = #{driverLeaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startAddr != null">
+        start_addr = #{startAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="endAddr != null">
+        end_addr = #{endAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="distance != null">
+        distance = #{distance,jdbcType=REAL},
+      </if>
+      <if test="estArrivalTime != null">
+        est_arrival_time = #{estArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualArrivalTime != null">
+        actual_arrival_time = #{actualArrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loadStatus != null">
+        load_status = #{loadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="locationCertificate != null">
+        location_certificate = #{locationCertificate,jdbcType=INTEGER},
+      </if>
+      <if test="qualityCertificate != null">
+        quality_certificate = #{qualityCertificate,jdbcType=INTEGER},
+      </if>
+      <if test="qrcodeUrl != null">
+        qrcode_url = #{qrcodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isAuthPay != null">
+        is_auth_pay = #{isAuthPay,jdbcType=INTEGER},
+      </if>
+      <if test="infoIntegrity != null">
+        info_integrity = #{infoIntegrity,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="receiverCompanyId != null">
+        receiver_company_id = #{receiverCompanyId,jdbcType=BIGINT},
+      </if>
+      <if test="createRoleType != null">
+        create_role_type = #{createRoleType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.DeliveryOrder">
+    update delivery_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=VARCHAR},
+      sender_name = #{senderName,jdbcType=VARCHAR},
+      sender_mobile = #{senderMobile,jdbcType=VARCHAR},
+      receiver_online_user_id = #{receiverOnlineUserId,jdbcType=BIGINT},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_company = #{receiverCompany,jdbcType=VARCHAR},
+      driver_online_user_id = #{driverOnlineUserId,jdbcType=BIGINT},
+      driver_name = #{driverName,jdbcType=VARCHAR},
+      driver_mobile = #{driverMobile,jdbcType=VARCHAR},
+      vehicle_id = #{vehicleId,jdbcType=BIGINT},
+      driver_plate_number = #{driverPlateNumber,jdbcType=VARCHAR},
+      driver_leave_time = #{driverLeaveTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      start_addr = #{startAddr,jdbcType=VARCHAR},
+      end_addr = #{endAddr,jdbcType=VARCHAR},
+      distance = #{distance,jdbcType=REAL},
+      est_arrival_time = #{estArrivalTime,jdbcType=TIMESTAMP},
+      actual_arrival_time = #{actualArrivalTime,jdbcType=TIMESTAMP},
+      load_status = #{loadStatus,jdbcType=INTEGER},
+      location_certificate = #{locationCertificate,jdbcType=INTEGER},
+      quality_certificate = #{qualityCertificate,jdbcType=INTEGER},
+      qrcode_url = #{qrcodeUrl,jdbcType=VARCHAR},
+      is_auth_pay = #{isAuthPay,jdbcType=INTEGER},
+      info_integrity = #{infoIntegrity,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      receiver_company_id = #{receiverCompanyId,jdbcType=BIGINT},
+      create_role_type = #{createRoleType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByOrderNo" resultType="java.lang.Long"  >
+    select id
+      from delivery_order
+       where order_no=#{orderNo}
+  </select>
+    <select id="selectByOperateIdAndStatus" resultMap="BaseResultMap">
+       select
+       <include refid="Base_Column_List"/>
+        from delivery_order
+
+        where
+        <choose>
+            <when test="status ==1">
+                gmt_create >= FROM_UNIXTIME(UNIX_TIMESTAMP(CAST(SYSDATE()AS DATE)))
+            </when>
+            <otherwise>
+                gmt_create &lt; FROM_UNIXTIME(UNIX_TIMESTAMP(CAST(SYSDATE()AS DATE)))
+            </otherwise>
+
+        </choose>
+        and
+        (creator_id=#{userId} or operate_id=#{userId})
+    </select>
+</mapper>

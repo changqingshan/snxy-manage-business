@@ -16,6 +16,12 @@
             <version>0.0.1-SNAPSHOT</version>
             <artifactId>manage-business-dao</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.11.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
 
