@@ -59,66 +59,56 @@ public class IntoDoorAboutTabletController {
 
 
     //收费（支付 进(出)门扫码上传支付条码进行付款）
-    @RequestMapping()
+    @RequestMapping("ali/pay")
     public ResultData getPayTheBarcode(AliPayForInOutVO aliPayForInOutVO){
        return ResultData.success(payService.getPayInfo(aliPayForInOutVO));
     }
-    //收费（支付）
-    @RequestMapping
-   public ResultData getChargeResult(){
-        return null;
-   }
-    //扫码支付
-    @RequestMapping
-    public ResultData sweepCodeToPay(){
 
-        return null;
-    }
-    //查看检测报告
-    @RequestMapping
-    public ResultData getQualitySheetInfo(){
-        return null;
-    }
-    //订单查询接口
-    @RequestMapping
-    public ResultData getOrderPayInfo(){
-        return null;
-    }
-    //退款申请
-
-    //退款结果查询
-    @RequestMapping
-    public ResultData getRefundResult(){
-        return null;
-    }
-    //撤销订单
-    @RequestMapping
-    public ResultData cacelOrder(){
-        return null;
-    }
-    //微信反扫支付
-    @RequestMapping
-    public ResultData PayWeiChat(){
-        return null;
-    }
-    //微信支付交易查询
-    @RequestMapping
-    public ResultData getWeiChatPayInfo(){
-        return null;
-    }
-    //微信申请退款交易
-    @RequestMapping
-    public ResultData refundWeiChat(){
-        return null;
-    }
-    //微信退款交易查询
-    @RequestMapping
-    public ResultData getRefundWeiChatInfo(){
-        return null;
-    }
-    //微信撤销交易
-    @RequestMapping
-    public ResultData cacelWeiChatPay(){
-        return null;
-    }
+//    //查看检测报告
+//    @RequestMapping("checkReport/search")
+//    public ResultData getQualitySheetInfo(){
+//        return null;
+//    }
+//    //订单查询接口
+//    @RequestMapping
+//    public ResultData getOrderPayInfo(){
+//        return null;
+//    }
+//    //退款申请
+//
+//    //退款结果查询
+//    @RequestMapping
+//    public ResultData getRefundResult(){
+//        return null;
+//    }
+//    //撤销订单
+//    @RequestMapping
+//    public ResultData cancelOrder(){
+//        return null;
+//    }
+//    //微信反扫支付
+//    @RequestMapping
+//    public ResultData PayWeiChat(){
+//        return null;
+//    }
+//    //微信支付交易查询
+//    @RequestMapping
+//    public ResultData getWeiChatPayInfo(){
+//        return null;
+//    }
+//    //微信申请退款交易
+//    @RequestMapping
+//    public ResultData refundWeiChat(){
+//        return null;
+//    }
+//    //微信退款交易查询
+//    @RequestMapping
+//    public ResultData getRefundWeiChatInfo(){
+//        return null;
+//    }
+//    //微信撤销交易
+//    @RequestMapping
+//    public ResultData cacelWeiChatPay(){
+//        return null;
+//    }
 }
