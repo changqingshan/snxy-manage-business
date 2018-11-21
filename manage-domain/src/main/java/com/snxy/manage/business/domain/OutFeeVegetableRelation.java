@@ -1,7 +1,10 @@
 package com.snxy.manage.business.domain;
 
+import lombok.Builder;
+
 import java.util.Date;
 
+@Builder
 public class OutFeeVegetableRelation {
     private Long id;
 

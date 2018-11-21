@@ -1,2 +1,7 @@
-D:\snxy-project\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\SnxyBusinessBizApplication.java
-D:\snxy-project\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\config\RedisConfig.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\impl\OutFeeOrderServiceImpl.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\feign\FileNumService.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\impl\OrderServiceImpl.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\impl\OutFeeOrderImageServiceImpl.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\SnxyBusinessBizApplication.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\feign\FileNumServiceFallBack.java
+F:\github\snxy\snxy-manage-business\manage-biz\src\main\java\com\snxy\manage\business\biz\config\RedisConfig.java

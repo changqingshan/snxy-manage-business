@@ -161,4 +161,22 @@
       is_delete = #{isDelete,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectOrderByTime" resultMap="BaseResultMap">
+    select
+     id, staff_id, out_fee_no, entrance_fee_capacity_id, driver_plate_number, out_fee,
+    load_status, status, gmt_create, gmt_modified, is_delete
+    from out_fee_order
+    where staff_id = #{staffId}
+    and gmt_create >= FROM_UNIXTIME(UNIX_TIMESTAMP(CAST(SYSDATE()AS DATE)))
+  </select>
+
+  <select id="selectOrderBydate" resultMap="BaseResultMap">
+    select
+     id, staff_id, out_fee_no, entrance_fee_capacity_id, driver_plate_number, out_fee,
+    load_status, status, gmt_create, gmt_modified, is_delete
+    from out_fee_order
+    where staff_id = #{staffId}
+    and gmt_create &lt; FROM_UNIXTIME(UNIX_TIMESTAMP(CAST(SYSDATE()AS DATE)))
+  </select>
 </mapper>

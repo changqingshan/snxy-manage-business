@@ -1,2 +1,7 @@
-com\snxy\manage\business\biz\SnxyBusinessBizApplication.class
+com\snxy\manage\business\biz\impl\OutFeeOrderServiceImpl.class
+com\snxy\manage\business\biz\impl\OutFeeOrderImageServiceImpl.class
 com\snxy\manage\business\biz\config\RedisConfig.class
+com\snxy\manage\business\biz\impl\OrderServiceImpl.class
+com\snxy\manage\business\biz\feign\FileNumService.class
+com\snxy\manage\business\biz\SnxyBusinessBizApplication.class
+com\snxy\manage\business\biz\feign\FileNumServiceFallBack.class

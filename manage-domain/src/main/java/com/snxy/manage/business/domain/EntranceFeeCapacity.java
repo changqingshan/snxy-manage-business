@@ -1,15 +1,11 @@
 package com.snxy.manage.business.domain;
 
-import lombok.Builder;
-
 import java.util.Date;
-@Builder
-public class DrivewayDic {
+
+public class EntranceFeeCapacity {
     private Long id;
 
-    private Long gateDictId;
-
-    private String driveway;
+    private String carryingCapacity;
 
     private String remark;
 
@@ -27,20 +23,12 @@ public class DrivewayDic {
         this.id = id;
     }
 
-    public Long getGateDictId() {
-        return gateDictId;
+    public String getCarryingCapacity() {
+        return carryingCapacity;
     }
 
-    public void setGateDictId(Long gateDictId) {
-        this.gateDictId = gateDictId;
-    }
-
-    public String getDriveway() {
-        return driveway;
-    }
-
-    public void setDriveway(String driveway) {
-        this.driveway = driveway;
+    public void setCarryingCapacity(String carryingCapacity) {
+        this.carryingCapacity = carryingCapacity;
     }
 
     public String getRemark() {
