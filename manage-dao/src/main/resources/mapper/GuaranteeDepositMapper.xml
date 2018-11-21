@@ -1,63 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snxy.manage.business.dao.mapper.EntryFeeMapper">
-  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.EntryFee">
+<mapper namespace="com.snxy.manage.business.dao.mapper.GuaranteeDepositMapper">
+  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.GuaranteeDeposit">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="delivery_order_id" jdbcType="BIGINT" property="deliveryOrderId" />
-    <result column="est_fee" jdbcType="DECIMAL" property="estFee" />
-    <result column="actual_fee" jdbcType="DECIMAL" property="actualFee" />
+    <result column="online_user_id" jdbcType="BIGINT" property="onlineUserId" />
+    <result column="guarantee_deposit" jdbcType="DECIMAL" property="guaranteeDeposit" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="pay_method" jdbcType="INTEGER" property="payMethod" />
     <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
-    <result column="pay_method" jdbcType="TINYINT" property="payMethod" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="is_generate_quality" jdbcType="VARCHAR" property="isGenerateQuality" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, delivery_order_id, est_fee, actual_fee, status, remark, pay_time, refund_time, 
-    pay_method, gmt_create, gmt_modified, is_delete
+    id, delivery_order_id, online_user_id, guarantee_deposit, status, remark, pay_time, 
+    pay_method, refund_time, gmt_create, gmt_modified, is_delete, is_generate_quality
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from "entry_fee"
+    from guarantee_deposit
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from entry_fee
+    delete from guarantee_deposit
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.snxy.manage.business.domain.EntryFee">
+  <insert id="insert" parameterType="com.snxy.manage.business.domain.GuaranteeDeposit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into "entry_fee" (delivery_order_id, est_fee, actual_fee,
-    insert into entry_fee (delivery_order_id, est_fee, actual_fee,
-      status, remark, pay_time,
-      refund_time, pay_method, gmt_create, 
-      gmt_modified, is_delete)
-    values (#{deliveryOrderId,jdbcType=BIGINT}, #{estFee,jdbcType=DECIMAL}, #{actualFee,jdbcType=DECIMAL}, 
+    insert into guarantee_deposit (delivery_order_id, online_user_id, guarantee_deposit, 
+      status, remark, pay_time, 
+      pay_method, refund_time, gmt_create, 
+      gmt_modified, is_delete, is_generate_quality
+      )
+    values (#{deliveryOrderId,jdbcType=BIGINT}, #{onlineUserId,jdbcType=BIGINT}, #{guaranteeDeposit,jdbcType=DECIMAL}, 
       #{status,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, 
-      #{refundTime,jdbcType=TIMESTAMP}, #{payMethod,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
-      #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT})
+      #{payMethod,jdbcType=INTEGER}, #{refundTime,jdbcType=TIMESTAMP}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, #{isGenerateQuality,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.EntryFee">
+  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.GuaranteeDeposit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into "entry_fee"
-    insert into entry_fee
+    insert into guarantee_deposit
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="deliveryOrderId != null">
         delivery_order_id,
       </if>
-      <if test="estFee != null">
-        est_fee,
+      <if test="onlineUserId != null">
+        online_user_id,
       </if>
-      <if test="actualFee != null">
-        actual_fee,
+      <if test="guaranteeDeposit != null">
+        guarantee_deposit,
       </if>
       <if test="status != null">
         status,
@@ -68,11 +69,11 @@
       <if test="payTime != null">
         pay_time,
       </if>
-      <if test="refundTime != null">
-        refund_time,
-      </if>
       <if test="payMethod != null">
         pay_method,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
       </if>
       <if test="gmtCreate != null">
         gmt_create,
@@ -83,16 +84,19 @@
       <if test="isDelete != null">
         is_delete,
       </if>
+      <if test="isGenerateQuality != null">
+        is_generate_quality,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="deliveryOrderId != null">
         #{deliveryOrderId,jdbcType=BIGINT},
       </if>
-      <if test="estFee != null">
-        #{estFee,jdbcType=DECIMAL},
+      <if test="onlineUserId != null">
+        #{onlineUserId,jdbcType=BIGINT},
       </if>
-      <if test="actualFee != null">
-        #{actualFee,jdbcType=DECIMAL},
+      <if test="guaranteeDeposit != null">
+        #{guaranteeDeposit,jdbcType=DECIMAL},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -103,11 +107,11 @@
       <if test="payTime != null">
         #{payTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=INTEGER},
+      </if>
       <if test="refundTime != null">
         #{refundTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payMethod != null">
-        #{payMethod,jdbcType=TINYINT},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -118,20 +122,22 @@
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
       </if>
+      <if test="isGenerateQuality != null">
+        #{isGenerateQuality,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.EntryFee">
-    update "entry_fee"
-    update entry_fee
+  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.GuaranteeDeposit">
+    update guarantee_deposit
     <set>
       <if test="deliveryOrderId != null">
         delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
       </if>
-      <if test="estFee != null">
-        est_fee = #{estFee,jdbcType=DECIMAL},
+      <if test="onlineUserId != null">
+        online_user_id = #{onlineUserId,jdbcType=BIGINT},
       </if>
-      <if test="actualFee != null">
-        actual_fee = #{actualFee,jdbcType=DECIMAL},
+      <if test="guaranteeDeposit != null">
+        guarantee_deposit = #{guaranteeDeposit,jdbcType=DECIMAL},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -142,11 +148,11 @@
       <if test="payTime != null">
         pay_time = #{payTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="payMethod != null">
+        pay_method = #{payMethod,jdbcType=INTEGER},
+      </if>
       <if test="refundTime != null">
         refund_time = #{refundTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payMethod != null">
-        pay_method = #{payMethod,jdbcType=TINYINT},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -157,44 +163,38 @@
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
       </if>
+      <if test="isGenerateQuality != null">
+        is_generate_quality = #{isGenerateQuality,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.EntryFee">
-    update "entry_fee"
-    update entry_fee
+  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.GuaranteeDeposit">
+    update guarantee_deposit
     set delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
-      est_fee = #{estFee,jdbcType=DECIMAL},
-      actual_fee = #{actualFee,jdbcType=DECIMAL},
+      online_user_id = #{onlineUserId,jdbcType=BIGINT},
+      guarantee_deposit = #{guaranteeDeposit,jdbcType=DECIMAL},
       status = #{status,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_method = #{payMethod,jdbcType=INTEGER},
       refund_time = #{refundTime,jdbcType=TIMESTAMP},
-      pay_method = #{payMethod,jdbcType=TINYINT},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
-      is_delete = #{isDelete,jdbcType=TINYINT}
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      is_generate_quality = #{isGenerateQuality,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-  <update id="updateByEntryFee">
-    update entry_fee
-    set actual_fee = #{actualFee},
-    gmt_modified = #{date}
-    where delivery_order_id = #{orderId}
-  </update>
-
-  <select id="selectEntryFeeByOrderId" resultMap="BaseResultMap">
+  <select id="selectGuaranteeByOrderId" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from entry_fee
-     where
-    delivery_order_id =#{orderId}
+    from guarantee_deposit
+    where delivery_order_id=#{orderId}
   </select>
   <update id="updateStatusByOrderId">
-    update entry_fee
+    update guarantee_deposit
      set status=#{status},
-     gmt_modified=#{date}
-     where delivery_order_id =#{orderId}
+      gmt_modified=#{date}
+     where delivery_order_id=#{orderId}
   </update>
 </mapper>

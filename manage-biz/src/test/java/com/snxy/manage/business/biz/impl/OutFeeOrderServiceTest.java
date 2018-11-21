@@ -1,5 +1,6 @@
 package com.snxy.manage.business.biz.impl;
 
+import com.snxy.common.util.PageInfo;
 import com.snxy.manage.business.domain.OutFeeOrder;
 import com.snxy.manage.business.service.OrderService;
 import com.snxy.manage.business.service.OutFeeOrderService;
@@ -25,8 +26,8 @@ public class OutFeeOrderServiceTest {
 
     @Test
     public void selectOrderByTime(){
-        List<OutFeeOrder> outFeeOrderList = outFeeOrderService.selectOrderByTime(1L,2);
-        log.info("个数："+outFeeOrderList.size());
+        PageInfo<OutFeeOrder> outFeeOrderList = outFeeOrderService.selectOrderByTime(1L,2);
+        log.info("个数："+outFeeOrderList.getTotal());
     }
 
     @Test
@@ -40,7 +41,7 @@ public class OutFeeOrderServiceTest {
 
     @Test
     public void outFeeOrderList(){
-        List<OutFeeOrder> outFeeOrderList = outFeeOrderService.selectOrderByTime(1L,2);
-            log.info("大小："+outFeeOrderList.size());
+        PageInfo<OutFeeOrder> outFeeOrderList = outFeeOrderService.selectOrderByTime(1L,2);
+            log.info("大小："+outFeeOrderList.getTotal());
     }
 }

@@ -4,6 +4,7 @@ import com.snxy.manage.business.domain.OutFeeOrder;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Date;
 
 public interface OutFeeOrderMapper {
     int deleteByPrimaryKey(Long id);
@@ -21,4 +22,6 @@ public interface OutFeeOrderMapper {
     List<OutFeeOrder> selectOrderByTime(@Param("staffId") Long staffId);
 
     List<OutFeeOrder> selectOrderBydate(@Param("staffId") Long staffId);
+
+    int updateStatusByOrderId(@Param("orderId") Long orderId, @Param("status") Integer status , @Param("date") Date date);//修改支付状态
 }

@@ -1,19 +1,22 @@
 package com.snxy.manage.business.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 @Builder
-public class EntryFee {
+@NoArgsConstructor
+@AllArgsConstructor
+public class GuaranteeDeposit {
     private Long id;
 
     private Long deliveryOrderId;
 
-    private BigDecimal estFee;
+    private Long onlineUserId;
 
-    private BigDecimal actualFee;
+    private BigDecimal guaranteeDeposit;
 
     private Integer status;
 
@@ -21,15 +24,17 @@ public class EntryFee {
 
     private Date payTime;
 
-    private Date refundTime;
+    private Integer payMethod;
 
-    private Byte payMethod;
+    private Date refundTime;
 
     private Date gmtCreate;
 
     private Date gmtModified;
 
     private Byte isDelete;
+
+    private String isGenerateQuality;
 
     public Long getId() {
         return id;
@@ -47,20 +52,20 @@ public class EntryFee {
         this.deliveryOrderId = deliveryOrderId;
     }
 
-    public BigDecimal getEstFee() {
-        return estFee;
+    public Long getOnlineUserId() {
+        return onlineUserId;
     }
 
-    public void setEstFee(BigDecimal estFee) {
-        this.estFee = estFee;
+    public void setOnlineUserId(Long onlineUserId) {
+        this.onlineUserId = onlineUserId;
     }
 
-    public BigDecimal getActualFee() {
-        return actualFee;
+    public BigDecimal getGuaranteeDeposit() {
+        return guaranteeDeposit;
     }
 
-    public void setActualFee(BigDecimal actualFee) {
-        this.actualFee = actualFee;
+    public void setGuaranteeDeposit(BigDecimal guaranteeDeposit) {
+        this.guaranteeDeposit = guaranteeDeposit;
     }
 
     public Integer getStatus() {
@@ -87,20 +92,20 @@ public class EntryFee {
         this.payTime = payTime;
     }
 
+    public Integer getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(Integer payMethod) {
+        this.payMethod = payMethod;
+    }
+
     public Date getRefundTime() {
         return refundTime;
     }
 
     public void setRefundTime(Date refundTime) {
         this.refundTime = refundTime;
-    }
-
-    public Byte getPayMethod() {
-        return payMethod;
-    }
-
-    public void setPayMethod(Byte payMethod) {
-        this.payMethod = payMethod;
     }
 
     public Date getGmtCreate() {
@@ -125,5 +130,13 @@ public class EntryFee {
 
     public void setIsDelete(Byte isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getIsGenerateQuality() {
+        return isGenerateQuality;
+    }
+
+    public void setIsGenerateQuality(String isGenerateQuality) {
+        this.isGenerateQuality = isGenerateQuality;
     }
 }

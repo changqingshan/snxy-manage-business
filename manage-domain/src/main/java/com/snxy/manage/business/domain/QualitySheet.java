@@ -1,7 +1,17 @@
 package com.snxy.manage.business.domain;
 
+
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class QualitySheet {
     private Long id;
 
@@ -37,20 +47,16 @@ public class QualitySheet {
 
     private Long userId;
 
+    private BigDecimal checkFee;
+
+    private Integer isPay;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
     }
 
     public String getCode() {
@@ -157,6 +163,14 @@ public class QualitySheet {
         this.gmtModified = gmtModified;
     }
 
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
     public Byte getIsDelete() {
         return isDelete;
     }
@@ -171,5 +185,21 @@ public class QualitySheet {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public BigDecimal getCheckFee() {
+        return checkFee;
+    }
+
+    public void setCheckFee(BigDecimal checkFee) {
+        this.checkFee = checkFee;
+    }
+
+    public Integer getIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(Integer isPay) {
+        this.isPay = isPay;
     }
 }

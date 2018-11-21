@@ -226,4 +226,5 @@
   where delivery_order_id=#{orderId}
   and certificate_type=#{status}
 </update>
+
 </mapper>

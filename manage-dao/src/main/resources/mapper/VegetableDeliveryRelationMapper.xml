@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snxy.manage.business.dao.mapper.VegetableDeliveryRelationMapper">
+  <resultMap id="BaseResultMap" type="com.snxy.manage.business.domain.VegetableDeliveryRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="delivery_order_id" jdbcType="BIGINT" property="deliveryOrderId" />
+    <result column="vegetable_id" jdbcType="BIGINT" property="vegetableId" />
+    <result column="vegetable_name" jdbcType="VARCHAR" property="vegetableName" />
+    <result column="load_status" jdbcType="INTEGER" property="loadStatus" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="vegetable_price" jdbcType="DECIMAL" property="vegetablePrice" />
+    <result column="vegetable_weight" jdbcType="DECIMAL" property="vegetableWeight" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, delivery_order_id, vegetable_id, vegetable_name, load_status, gmt_create, gmt_modified, 
+    is_delete, vegetable_price, vegetable_weight
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from "vegetable_delivery_relation"
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from "vegetable_delivery_relation"
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.snxy.manage.business.domain.VegetableDeliveryRelation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "vegetable_delivery_relation" (delivery_order_id, vegetable_id, vegetable_name, 
+      load_status, gmt_create, gmt_modified, 
+      is_delete, vegetable_price, vegetable_weight
+      )
+    values (#{deliveryOrderId,jdbcType=BIGINT}, #{vegetableId,jdbcType=BIGINT}, #{vegetableName,jdbcType=VARCHAR}, 
+      #{loadStatus,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=TINYINT}, #{vegetablePrice,jdbcType=DECIMAL}, #{vegetableWeight,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.VegetableDeliveryRelation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into "vegetable_delivery_relation"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deliveryOrderId != null">
+        delivery_order_id,
+      </if>
+      <if test="vegetableId != null">
+        vegetable_id,
+      </if>
+      <if test="vegetableName != null">
+        vegetable_name,
+      </if>
+      <if test="loadStatus != null">
+        load_status,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="vegetablePrice != null">
+        vegetable_price,
+      </if>
+      <if test="vegetableWeight != null">
+        vegetable_weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deliveryOrderId != null">
+        #{deliveryOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="vegetableId != null">
+        #{vegetableId,jdbcType=BIGINT},
+      </if>
+      <if test="vegetableName != null">
+        #{vegetableName,jdbcType=VARCHAR},
+      </if>
+      <if test="loadStatus != null">
+        #{loadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="vegetablePrice != null">
+        #{vegetablePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="vegetableWeight != null">
+        #{vegetableWeight,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snxy.manage.business.domain.VegetableDeliveryRelation">
+    update "vegetable_delivery_relation"
+    <set>
+      <if test="deliveryOrderId != null">
+        delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="vegetableId != null">
+        vegetable_id = #{vegetableId,jdbcType=BIGINT},
+      </if>
+      <if test="vegetableName != null">
+        vegetable_name = #{vegetableName,jdbcType=VARCHAR},
+      </if>
+      <if test="loadStatus != null">
+        load_status = #{loadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="vegetablePrice != null">
+        vegetable_price = #{vegetablePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="vegetableWeight != null">
+        vegetable_weight = #{vegetableWeight,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.VegetableDeliveryRelation">
+    update "vegetable_delivery_relation"
+    set delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
+      vegetable_id = #{vegetableId,jdbcType=BIGINT},
+      vegetable_name = #{vegetableName,jdbcType=VARCHAR},
+      load_status = #{loadStatus,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      vegetable_price = #{vegetablePrice,jdbcType=DECIMAL},
+      vegetable_weight = #{vegetableWeight,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByOrderId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from vegetable_delivery_relation
+    where delivery_order_id=#{orderId}
+  </select>
+</mapper>

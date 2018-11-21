@@ -22,10 +22,12 @@ public interface VegetableCertificateMapper {
 
     void insertCertificateList(@Param("vegetableCertificateList") List<VegetableCertificate> vegetableCertificateList);
 
-    List<VegetableCertificate> selectVOByOrderId(Long orderId);
-
     int updateCertificate(@Param("orderId") Long orderId, @Param("status") String status);
 
 
     void setProvesStatusByOrderId(@Param("orderId") String orderId,@Param("status") String status,@Param("date") Date date);
+
+    List<VegetableCertificate> selectVOByOrderId(Long orderId);
+
+    int updateCertificate(@Param("orderId") Long orderId,@Param("status") String status,@Param("now") Date now);
 }

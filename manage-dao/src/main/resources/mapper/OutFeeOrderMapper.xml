@@ -179,4 +179,11 @@
     where staff_id = #{staffId}
     and gmt_create &lt; FROM_UNIXTIME(UNIX_TIMESTAMP(CAST(SYSDATE()AS DATE)))
   </select>
+
+  <update id="updateStatusByOrderId">
+    update out_fee_order
+     set status=#{status},
+     gmt_modified=#{date}
+     where out_fee_no=#{orderId}<!--待优化-->
+  </update>
 </mapper>
