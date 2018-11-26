@@ -76,7 +76,16 @@ public class DeliveryOrder {
     private Long receiverCompanyId;
 
     private Integer createRoleType;
+
     private Long operateId;
+
+    private Long totalFee;
+
+    private Long entryFee;
+
+    private Integer isRefund;
+
+    private Long depositFee;
 
     public Long getId() {
         return id;
@@ -348,5 +357,45 @@ public class DeliveryOrder {
 
     public void setCreateRoleType(Integer createRoleType) {
         this.createRoleType = createRoleType;
+    }
+
+    public Long getOperateId() {
+        return operateId;
+    }
+
+    public void setOperateId(Long operateId) {
+        this.operateId = operateId;
+    }
+
+    public Long getTotalFee() {
+        return totalFee;
+    }
+
+    public void setTotalFee(Long totalFee) {
+        this.totalFee = totalFee;
+    }
+
+    public Long getEntryFee() {
+        return entryFee;
+    }
+
+    public void setEntryFee(Long entryFee) {
+        this.entryFee = entryFee;
+    }
+
+    public Integer getIsRefund() {
+        return isRefund;
+    }
+
+    public void setIsRefund(Integer isRefund) {
+        this.isRefund = isRefund;
+    }
+
+    public Long getDepositFee() {
+        return depositFee;
+    }
+
+    public void setDepositFee(Long depositFee) {
+        this.depositFee = depositFee;
     }
 }
