@@ -69,11 +69,11 @@ public class IntoDoorAboutTabletController {
 //    public ResultData getQualitySheetInfo(){
 //        return null;
 //    }
-//    //订单查询接口
-//    @RequestMapping
-//    public ResultData getOrderPayInfo(){
-//        return null;
-//    }
+    //订单查询接口
+    @RequestMapping("/aliPay/info")
+    public ResultData getOrderPayInfo(){
+        return null;
+    }
 //    //退款申请
 //
 //    //退款结果查询

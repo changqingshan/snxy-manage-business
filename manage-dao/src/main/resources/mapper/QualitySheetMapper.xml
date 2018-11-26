@@ -204,7 +204,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snxy.business.domain.QualitySheet">
+  <update id="updateByPrimaryKey" parameterType="com.snxy.manage.business.domain.QualitySheet">
     update quality_sheet
     set code = #{code,jdbcType=VARCHAR},
       delivery_order_id = #{deliveryOrderId,jdbcType=BIGINT},
