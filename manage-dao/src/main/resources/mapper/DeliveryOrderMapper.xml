@@ -37,6 +37,10 @@
     <result column="receiver_company_id" jdbcType="BIGINT" property="receiverCompanyId" />
     <result column="create_role_type" jdbcType="INTEGER" property="createRoleType" />
       <result column="operate_id" jdbcType="INTEGER" property="operateId" />
+    <result column="total_fee" jdbcType="DECIMAL" property="totalFee" />
+    <result column="entry_fee" jdbcType="DECIMAL" property="entryFee" />
+    <result column="is_refund" jdbcType="INTEGER" property="isRefund" />
+    <result column="deposit_fee" jdbcType="DECIMAL" property="depositFee" />
   </resultMap>
   <sql id="Base_Column_List">
     id, order_no, creator_id, creator, sender_name, sender_mobile, receiver_online_user_id, 
@@ -47,7 +51,8 @@
   when gmt_modified!="" or gmt_modified!=null then gmt_modified
   else gmt_create
  end as gmt_create,
-    gmt_modified, is_delete, receiver_company_id, create_role_type,operate_id
+    gmt_modified, is_delete, receiver_company_id, create_role_type,operate_id,total_fee,
+    entry_fee, is_refund, deposit_fee
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -73,7 +78,8 @@
       load_status, location_certificate, quality_certificate, 
       qrcode_url, is_auth_pay, info_integrity, 
       status, gmt_create, gmt_modified, 
-      is_delete, receiver_company_id, create_role_type
+      is_delete, receiver_company_id, create_role_type, operate_id, total_fee, entry_fee,
+    is_refund, deposit_fee
       )
     values (#{orderNo,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, 
       #{senderName,jdbcType=VARCHAR}, #{senderMobile,jdbcType=VARCHAR}, #{receiverOnlineUserId,jdbcType=BIGINT}, 
@@ -85,7 +91,9 @@
       #{loadStatus,jdbcType=INTEGER}, #{locationCertificate,jdbcType=INTEGER}, #{qualityCertificate,jdbcType=INTEGER}, 
       #{qrcodeUrl,jdbcType=VARCHAR}, #{isAuthPay,jdbcType=INTEGER}, #{infoIntegrity,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=TINYINT}, #{receiverCompanyId,jdbcType=BIGINT}, #{createRoleType,jdbcType=INTEGER}
+      #{isDelete,jdbcType=TINYINT}, #{receiverCompanyId,jdbcType=BIGINT}, #{createRoleType,jdbcType=INTEGER},
+    #{operateId,jdbcType=BIGINT}, #{totalFee,jdbcType=DECIMAL}, #{entryFee,jdbcType=DECIMAL},
+    #{isRefund,jdbcType=INTEGER}, #{depositFee,jdbcType=DECIMAL})
       )
   </insert>
   <insert id="insertSelective" parameterType="com.snxy.manage.business.domain.DeliveryOrder">
