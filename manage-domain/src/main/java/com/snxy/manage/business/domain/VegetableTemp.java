@@ -1,7 +1,10 @@
 package com.snxy.manage.business.domain;
 
+import lombok.Builder;
+
 import java.util.Date;
 
+@Builder
 public class VegetableTemp {
     private Long id;
 

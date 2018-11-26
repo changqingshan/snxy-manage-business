@@ -21,6 +21,13 @@ public interface VegetableCertificateMapper {
     int updateByPrimaryKey(VegetableCertificate record);
 
     void insertCertificateList(@Param("vegetableCertificateList") List<VegetableCertificate> vegetableCertificateList);
+
+    int updateCertificate(@Param("orderId") Long orderId, @Param("status") String status);
+
+
+    void setProvesStatusByOrderId(@Param("orderId") String orderId,@Param("status") String status,@Param("date") Date date);
+
     List<VegetableCertificate> selectVOByOrderId(Long orderId);
+
     int updateCertificate(@Param("orderId") Long orderId,@Param("status") String status,@Param("now") Date now);
 }

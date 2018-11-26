@@ -215,8 +215,16 @@
   <update id="updateCertificate">
     update vegetable_certificate
      set status=0
-       set gmt_modified=#{now}
      where delivery_order_id=#{orderId}
       and certificate_type=#{status}
   </update>
+
+<update id="setProvesStatusByOrderId">
+  update vegetable_certificate
+  set status = 1,
+  gmt_modified = #{date}
+  where delivery_order_id=#{orderId}
+  and certificate_type=#{status}
+</update>
+
 </mapper>

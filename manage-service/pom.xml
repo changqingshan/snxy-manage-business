@@ -17,11 +17,17 @@
             <artifactId>manage-business-dao</artifactId>
         </dependency>
         <dependency>
+<<<<<<< HEAD
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+=======
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>4.3.11.RELEASE</version>
         </dependency>
 
+>>>>>>> d93e4f22d4e89dd6a5b65275cb8f3108b11ced00
     </dependencies>
 
 

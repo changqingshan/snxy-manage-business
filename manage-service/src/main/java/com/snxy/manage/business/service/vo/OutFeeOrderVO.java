@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OutFeeOrderVo {
+public class OutFeeOrderVO {
 
     private Long staffId;
 
@@ -34,7 +35,13 @@ public class OutFeeOrderVo {
 
     private String vegetableName;
 
-    private String imageUrl;
+    private List<String> imageUrl;
 
+    private String remark;
 
+    private String driveway;
+
+    private Long vegetableId;
+
+    private Long gateDictId;
 }

@@ -2,13 +2,13 @@ package com.snxy.manage.business.web.controller;
 
 import com.snxy.common.response.ResultData;
 import com.snxy.manage.business.service.OrderService;
+import com.snxy.manage.business.service.vo.OrderFeeVO;
+import com.snxy.manage.business.service.vo.SettingProvesInvalidVO;
+import lombok.extern.slf4j.Slf4j;
 import com.snxy.manage.business.service.PayService;
 import com.snxy.manage.business.service.vo.AliPayForInOutVO;
-import com.snxy.manage.business.service.vo.SettingProvesInvalidVO;
 import com.snxy.manage.business.service.vo.SystemUserVO;
 import com.snxy.manage.business.service.vo.ThroughTheDoorOrderVo;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,14 +16,31 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Slf4j
 @RequestMapping("/tablet")
-@Validated
+@Slf4j
 public class IntoDoorAboutTabletController {
+
+    @Resource
+    private OrderService orderService;
     @Resource
     private OrderService OrderService;
     @Resource
     private PayService payService;
+
+    //设置检测证明有效性
+    @RequestMapping("/proves/status")
+    public ResultData provesStatus(SettingProvesInvalidVO settingProvesInvalidVO){
+        orderService.setProvesStatus(settingProvesInvalidVO);
+        return ResultData.success("");
+    }
+
+    //调整费用
+    @RequestMapping("/updateOrder/cost")
+    public ResultData updateOrderCost(OrderFeeVO orderFeeVO){
+        orderService.updateOrderFee(orderFeeVO);
+        return ResultData.success("");
+    }
+
     //生成订单号
     @RequestMapping("/order/generator")
     public ResultData generateOrderNo(@RequestAttribute(value = "systemUser", required = false) SystemUserVO systemUserVO){

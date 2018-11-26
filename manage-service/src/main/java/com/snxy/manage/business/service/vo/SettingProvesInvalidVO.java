@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SettingProvesInvalidVO {
+
     private String status;//1产地证明，2检测证明
+
     private String orderId;//订单id
 }
