@@ -19,4 +19,5 @@ public interface DeliveryOrderMapper {
     int updateByPrimaryKey(DeliveryOrder record);
     Long selectByOrderNo(String orderNo);
     List<DeliveryOrder> selectByOperateIdAndStatus(@Param("userId") Long userId, @Param("status") String status);
+    DeliveryOrder selectAllByOrderNo(String orderNo);
 }

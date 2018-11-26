@@ -1,8 +1,9 @@
 package com.snxy.manage.business.service;
 
 import com.snxy.manage.business.service.vo.AliPayForInOutVO;
+import com.snxy.manage.business.service.vo.AliPayResVO;
 
 public interface PayService {
-    String getPayInfo(AliPayForInOutVO AliPayForInOutVO);
+    AliPayResVO getPayInfo(AliPayForInOutVO AliPayForInOutVO);
 
 }
